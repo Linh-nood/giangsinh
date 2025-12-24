@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Giáng Sinh Tình Yêu - Gửi Thiên Thần Của Anh 💕</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ==================== INTRO SCREEN ==================== -->
+    <div id="introScreen" class="intro-screen">
+        <canvas id="introSnowCanvas"></canvas>
+        
+        <div class="intro-content">
+            <h1 class="intro-title">
+                <span class="intro-line">🎄 Merry Christmas 🎄</span>
+                <span class="intro-subline">Gửi người anh yêu thương</span>
+            </h1>
+            
+            <div class="intro-heart-container" id="introHeart">
+                <div class="intro-heart">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="intro-heart-glow"></div>
+                <div class="intro-rings">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+            </div>
+            
+            <p class="intro-hint">
+                <i class="fas fa-hand-pointer"></i>
+                Nhấn vào trái tim để mở thư bé nhé!
+            </p>
+            
+            <div class="intro-snowflakes">
+                <span>❄</span><span>❅</span><span>❆</span><span>❄</span><span>❅</span>
+                <span>❆</span><span>❄</span><span>❅</span><span>❆</span><span>❄</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div id="mainContent" class="main-wrapper" style="display: none;">
+        <!-- Background Music -->
+        <audio id="bgMusic" loop>
+            <source src="Nhạc Không Lời Piano Hay Nhất - Nhạc Giáng Sinh Noel Nhẹ Nhàng Thư Giãn - Merry Christmas - YouTube.mp3" type="audio/mpeg">
+        </audio>
+        
+        <!-- Music Control Button -->
+        <button id="musicToggle" class="music-btn" title="Bật/Tắt nhạc">
+            <i class="fas fa-music"></i>
+            <span class="music-pulse"></span>
+        </button>
+
+        <!-- Interactive Heart -->
+        <div id="interactiveHeart" class="interactive-heart" title="Click để xem điều kỳ diệu!">
+            <i class="fas fa-heart"></i>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+            <div class="floating-item gift"><i class="fas fa-gift"></i></div>
+            <div class="floating-item bell"><i class="fas fa-bell"></i></div>
+            <div class="floating-item star"><i class="fas fa-star"></i></div>
+            <div class="floating-item snowflake"><i class="fas fa-snowflake"></i></div>
+            <div class="floating-item candy"><i class="fas fa-candy-cane"></i></div>
+            <div class="floating-item tree"><i class="fas fa-tree"></i></div>
+        </div>
+
+        <!-- Snow Canvas -->
+        <canvas id="snowCanvas"></canvas>
+
+        <!-- Confetti Canvas -->
+        <canvas id="confettiCanvas"></canvas>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="section hero-section">
+            <div class="hero-content glass-card">
+                <div class="sparkle-container">
+                    <span class="sparkle">✨</span>
+                    <span class="sparkle">⭐</span>
+                    <span class="sparkle">✨</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="title-line">Gửi</span>
+                    <span class="title-main">Tình Yêu</span>
+                    <span class="title-line">Của Anh</span>
+                </h1>
+                
+                <div class="hero-subtitle">
+                    <i class="fas fa-snowflake"></i>
+                    <span>Merry Christmas 2025</span>
+                    <i class="fas fa-snowflake"></i>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="countdown-container">
+                    <h3 class="countdown-title">
+                        <i class="fas fa-clock"></i>
+                        Đếm ngược đến Giáng Sinh
+                    </h3>
+                    <div class="countdown-timer">
+                        <div class="time-block">
+                            <span id="days" class="time-value">00</span>
+                            <span class="time-label">Ngày</span>
+                        </div>
+                        <div class="time-separator">:</div>
+                        <div class="time-block">
+                            <span id="hours" class="time-value">00</span>
+                            <span class="time-label">Giờ</span>
+                        </div>
+                        <div class="time-separator">:</div>
+                        <div class="time-block">
+                            <span id="minutes" class="time-value">00</span>
+                            <span class="time-label">Phút</span>
+                        </div>
+                        <div class="time-separator">:</div>
+                        <div class="time-block">
+                            <span id="seconds" class="time-value">00</span>
+                            <span class="time-label">Giây</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator">
+                    <span>Cuộn xuống bé nhé</span>
+                    <i class="fas fa-chevron-down bounce"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Message Section -->
+        <section id="message" class="section message-section">
+            <div class="message-content glass-card reveal">
+                <div class="section-header">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <h2>Nhắn gửi đến em</h2>
+                </div>
+                
+                <div class="letter-container">
+                    <div class="letter-decoration top-left">❄️</div>
+                    <div class="letter-decoration top-right">🎄</div>
+                    
+                    <p id="typingText" class="typing-text"></p>
+                    
+                    <div class="letter-decoration bottom-left">🎁</div>
+                    <div class="letter-decoration bottom-right">💝</div>
+                </div>
+                
+                <div class="signature">
+                    <span class="heart-signature">❤️</span>
+                    <span>Người Yêu Em Nhất</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section gallery-section">
+            <div class="gallery-content glass-card reveal">
+                <div class="section-header">
+                    <i class="fas fa-images"></i>
+                    <h2>bé và già</h2>
+                </div>
+                
+                <div class="gallery-3d-container">
+                    <div class="gallery-carousel" id="galleryCarousel">
+                        <div class="gallery-item">
+                            <div class="gallery-frame">
+                                <img src="iuiu.jpg" alt="Kỷ niệm 1">
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-frame">
+                                <img src="anh2.jpg" alt="Kỷ niệm 2">
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-frame">
+                                <img src="anh3.jpg" alt="Kỷ niệm 3">
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-frame">
+                                <img src="anh4.jpg" alt="Kỷ niệm 4">
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-frame">
+                                <div class="placeholder-image">
+                                    <img src="anh5.jpg" alt="anh5">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-frame">
+                                <div class="placeholder-image">
+                                    <img src="anh6.jpg" alt="anh6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-controls">
+                    <button class="gallery-btn prev" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-btn next" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Vow Section -->
+        <section id="vow" class="section vow-section">
+            <div class="vow-content glass-card reveal">
+                <div class="section-header">
+                    <i class="fas fa-heart"></i>
+                    <h2>Hãy Mở Trái Tim Anh</h2>
+                </div>
+                
+                <p class="vow-intro">
+                    Anh có một điều muốn nói với em...
+                </p>
+                
+                <button id="openHeartBtn" class="open-heart-btn">
+                    <span class="btn-content">
+                        <i class="fas fa-heart"></i>
+                        <span>Open My Heart</span>
+                    </span>
+                    <span class="btn-glow"></span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Love Modal -->
+    <div id="loveModal" class="love-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="hearts-explosion">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+            </div>
+            <h1 class="love-text">Anh nhờ cậy năng quyền Chúa </h1>
+            <h1 class="love-text">mà yêu thương em </h1>
+            <p class="love-subtext">💕 Forever & Always 💕</p>
+            <button id="closeModal" class="close-modal-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer glass-card">
+        <p>Made with <i class="fas fa-heart heart-beat"></i> for you</p>
+        <p class="footer-year">Christmas 2025</p>
+    </footer>
+    </div> <!-- End mainContent -->
+
+    <script src="script.js"></script>
+</body>
+</html>
